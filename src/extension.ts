@@ -72,7 +72,7 @@ class Pug2HtmlContentProvider implements vs.TextDocumentContentProvider {
         let doc = vs.window.activeTextEditor.document
         
         let text = doc.getText()
-        let pug = require("pug")
+        let pug = this.findPug()
         if (!pug) {
             vs.window.showErrorMessage("Pug ist not installed.");
             return ""
@@ -83,6 +83,21 @@ class Pug2HtmlContentProvider implements vs.TextDocumentContentProvider {
         } catch (error) {
             return error.message
         }
+    }
+
+    private findPug() {
+        try {
+            let pugPath = path.join(vs.workspace.rootPath, "node_modules", "pug")
+            return require(pugPath)            
+        } catch (error) {
+                
+        }
+        try {
+            return require("pug")            
+        } catch (error) {
+            
+        }
+        return null
     }
 
     private compileOptions(fileName) {

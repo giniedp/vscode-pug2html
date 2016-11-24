@@ -1,73 +1,78 @@
 {
-    "name": "pug2html",
-    "displayName": "Pug to HTML",
-    "description": "Displays the html output of a pug file",
-    "version": "0.0.2",
-    "publisher": "ginie",
-    "license": "MIT",
-    "homepage": "https://github.com/giniedp/vscode-pug2html",
-    "repository": "https://github.com/giniedp/vscode-pug2html",
-    "keywords": [
-        "pug",
-        "jade",
-        "preview",
-        "output",
-        "debug"
+  "name": "pug2html",
+  "displayName": "Pug to HTML",
+  "description": "Displays the html output of a pug file",
+  "version": "0.0.2",
+  "publisher": "ginie",
+  "license": "MIT",
+  "homepage": "https://github.com/giniedp/vscode-pug2html",
+  "repository": "https://github.com/giniedp/vscode-pug2html",
+  "preview": true,
+  "keywords": [
+    "pug",
+    "jade",
+    "preview",
+    "output",
+    "debug"
+  ],
+  "engines": {
+    "vscode": "^1.5.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.execute"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "keybindings": [
+      {
+        "command": "extension.execute",
+        "key": "ctrl+k p",
+        "mac": "cmd+k p",
+        "when": "editorTextFocus"
+      }
     ],
-    "engines": {
-        "vscode": "^1.5.0"
-    },
-    "categories": [
-        "Other"
-    ],
-    "activationEvents": [
-        "onCommand:extension.execute"
-    ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "keybindings": [{
-			"command": "extension.execute",
-			"key": "ctrl+k p",
-			"mac": "cmd+k p",
-			"when": "editorTextFocus"
-        }],
-        "commands": [
-            {
-                "command": "extension.execute",
-                "title": "Pug to html"
-            }
-        ]
-    },
-    "configuration": {
+    "commands": [
+      {
+        "command": "extension.execute",
+        "title": "Pug to html"
+      }
+    ]
+  },
+  "configuration": {
+    "type": "object",
+    "title": "pug2html configuration",
+    "properties": {
+      "pug2html.compileOptions": {
         "type": "object",
-        "title": "pug2html configuration",
-        "properties": {
-            "pug2html.compileOptions": {
-                "type": "object",
-                "default": {
-                    "doctype": "html",
-                    "pretty": true
-                },
-                "description": "Options that are passed into pug compile function"
-            },
-            "pug2html.compileOptionsPath": {
-                "type": "string",
-                "default": null,
-                "description": "Path to a json or js file that exports compile options"
-            }
-        }
-    },
-    "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install"
-    },
-    "devDependencies": {
-        "@types/mocha": "^2.2.32",
-        "@types/node": "^6.0.40",
-        "mocha": "^2.3.3",
-        "pug": "^2.0.0-beta6",
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0"
+        "default": {
+          "doctype": "html",
+          "pretty": true
+        },
+        "description": "Options that are passed into pug compile function"
+      },
+      "pug2html.compileOptionsPath": {
+        "type": "string",
+        "default": null,
+        "description": "Path to a json or js file that exports compile options"
+      }
     }
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.32",
+    "@types/node": "^6.0.40",
+    "mocha": "^2.3.3",
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.0"
+  },
+  "dependencies": {
+    "pug": "^2.0.0-beta6"
+  }
 }
