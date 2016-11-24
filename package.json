@@ -2,14 +2,11 @@
     "name": "pug2html",
     "displayName": "Pug to HTML",
     "description": "Displays the html output of a pug file",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "ginie",
     "license": "MIT",
     "homepage": "https://github.com/giniedp/vscode-pug2html",
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:giniedp/vscode-pug2html.git"
-    },
+    "repository": "https://github.com/giniedp/vscode-pug2html",
     "keywords": [
         "pug",
         "jade",
