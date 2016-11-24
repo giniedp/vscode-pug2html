@@ -2,7 +2,7 @@
   "name": "pug2html",
   "displayName": "Pug to HTML",
   "description": "Displays the html output of a pug file",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "ginie",
   "license": "MIT",
   "homepage": "https://github.com/giniedp/vscode-pug2html",
