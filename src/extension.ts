@@ -1,8 +1,9 @@
 'use strict';
+
+import * as path from "path";
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vs from 'vscode';
-import * as path from "path";
 
 const pug2html = 'pug2html'
 const pug2htmlUri = vs.Uri.parse(`${pug2html}://preview.html`);
@@ -79,6 +80,7 @@ class Pug2HtmlContentProvider implements vs.TextDocumentContentProvider {
         }
         try {
             let co = this.compileOptions(doc.fileName)
+            co.filename = co.filename || doc.fileName
             return pug.compile(text, co)({})
         } catch (error) {
             return error.message
