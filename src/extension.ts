@@ -103,25 +103,25 @@ class Pug2HtmlContentProvider implements vs.TextDocumentContentProvider {
     }
 
     private compileOptions(fileName) {
-        let settings = vs.workspace.getConfiguration(pug2html)
-        let co = settings.get<any>("compileOptions", {
+        const settings = vs.workspace.getConfiguration(pug2html)
+        let options = settings.get<any>("compileOptions", {
             doctype: "html",
             pretty: true
         })
-        let cop = settings.get<string>("compileOptionsPath", null)
-        if (!cop) {
-            return co
+        let optionsPath = settings.get<string>("compileOptionsPath", null)
+        if (optionsPath) {
+            if (!path.isAbsolute(optionsPath)) {
+                optionsPath = path.join(vs.workspace.rootPath, optionsPath)
+            }
+            try {
+                options = require(optionsPath)
+                if (typeof options === "function") {
+                    options = options(fileName)
+                }            
+            } catch (error) {
+                console.log(error.message)
+            }
         }
-        cop = path.join(vs.workspace.rootPath, cop)
-        try {
-            co = require(cop)
-            if (typeof co === "function") {
-                co = co(fileName)
-            }            
-        } catch (error) {
-            console.log(error.message)
-        }
-
-        return co || {}
+        return options
     }
 }
