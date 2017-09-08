@@ -26,6 +26,25 @@
   ],
   "main": "./out/src/extension",
   "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "pug2html configuration",
+      "properties": {
+        "pug2html.compileOptions": {
+          "type": "object",
+          "default": {
+            "doctype": "html",
+            "pretty": true
+          },
+          "description": "Options that are passed into pug compile function"
+        },
+        "pug2html.compileOptionsPath": {
+          "type": "string",
+          "default": null,
+          "description": "Path to a json or js file that exports compile options"
+        }
+      }
+    },
     "keybindings": [
       {
         "command": "extension.execute",
@@ -40,25 +59,6 @@
         "title": "Pug to html"
       }
     ]
-  },
-  "configuration": {
-    "type": "object",
-    "title": "pug2html configuration",
-    "properties": {
-      "pug2html.compileOptions": {
-        "type": "object",
-        "default": {
-          "doctype": "html",
-          "pretty": true
-        },
-        "description": "Options that are passed into pug compile function"
-      },
-      "pug2html.compileOptionsPath": {
-        "type": "string",
-        "default": null,
-        "description": "Path to a json or js file that exports compile options"
-      }
-    }
   },
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
